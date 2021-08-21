@@ -7,7 +7,12 @@ $black: {{ .Param "style.colorBlack" | default "#222222" }};
 $red: {{ .Param "style.colorRed" | default "#dc3545" }};
 
 // Font
-$font-family: {{ .Param "style.fontFamily" | default "Inconsolata" }};
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap');
+$font-family: {{ .Param "style.fontFamily" | default "'IBM Plex Serif','Noto Serif SC'" }};
+
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+$title-font-family: {{ .Param "style.titleFont" | default "Ma Shan Zheng" }};
 
 // Margins
 $y-small: 0.6rem;
@@ -53,6 +58,7 @@ $y-medium: 1.0rem;
 }
 .navbar-brand {
     @extend %link-dark;
+    font-family: $title-font-family;
     font-size: 2rem;
 }
 .nav-link {
