@@ -1,13 +1,30 @@
 <div id="footer" class="mb-5">
-    <hr>
-    <div class="container text-center">
-        {{ range $item := .Site.Params.socialIcons }}
-            <a href="{{ $item.url }}" class="{{ $item.icon }} fa-1x" title="{{ $item.title }}"></a>
-        {{ end }}
-    </div>
-    {{ with .Site.Params.footer }}
-        <div class="container text-center">
-            <a href="{{ .url | absURL }}" title="{{ .text }}"><small>{{ .text }}</small></a>
-        </div>
+  <hr>
+  <div class="container text-center">
+    {{ range $item := .Site.Params.socialIcons }}
+    <a href="{{ $item.url }}" class="{{ $item.icon }} fa-1x" title="{{ $item.title }}"></a>
     {{ end }}
+  </div>
+
+  {{ with .Site.Params.footer }}
+  <div class="container text-center">
+    由 <a href="{{ .themeUrl | absURL }}">{{ .themeAuthor }}</a> 设计主题
+  </div>
+  <div class="container text-center">
+    <span class="copyright-year">
+      {{- $current := now.Format "2006" }}
+      &copy;
+      {{ if ne .since $current -}}
+      {{ .since }} -
+      {{ end }}
+      {{- $current }}
+      <span class="author">
+        {{ .copyright | safeHTML }}
+      </span>
+      {{ if .beian -}}
+      <a href="https://beian.miit.gov.cn/">{{ .beian | safeHTML }}</a>
+      {{ end }}
+    </span>
+  </div>
+  {{ end }}
 </div>
